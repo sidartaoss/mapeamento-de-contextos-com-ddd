@@ -167,13 +167,13 @@ A relação entre os times vem primeiro, porque muitas vezes é dada pela organi
 
 ```mermaid
 flowchart TD
-    Q1{"A integração compensa<br/>o custo?"} -->|não| SW["Caminhos separados"]
-    Q1 -->|sim| Q2{"Os dois contextos<br/>fracassam juntos?"}
+    Q1{"A integração compensa<br/>o custo?"} -->|sim| Q2{"Os dois contextos<br/>fracassam juntos?"}
+    Q1 -->|não| SW["Caminhos separados"]
+    Q2 -->|"não: há upstream<br/>e downstream"| Q3{"O upstream inclui as prioridades<br/>do downstream no planejamento?"}
     Q2 -->|sim| P["Parceria"]
     P -.->|"modelo pequeno, estável<br/>e de mesmo significado"| SK["Núcleo compartilhado"]
-    Q2 -->|"não: há upstream<br/>e downstream"| Q3{"O upstream inclui as prioridades<br/>do downstream no planejamento?"}
-    Q3 -->|sim| CS["Cliente-fornecedor"]
     Q3 -->|não| Q4{"O modelo do upstream<br/>serve ao downstream?"}
+    Q3 -->|sim| CS["Cliente-fornecedor"]
     Q4 -->|"sim: bom o bastante<br/>ou padrão de mercado"| CF["Conformista"]
     Q4 -->|"não: confuso, instável ou<br/>distante de um modelo valioso"| ACL["Camada anticorrupção"]
 ```
